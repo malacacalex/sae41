@@ -1,0 +1,38 @@
+CREATE USER 'sqlflask'@'localhost' IDENTIFIED BY 'sqlflask';
+GRANT ALL PRIVILEGES ON *.* TO 'sqlflask'@'localhost';
+
+CREATE DATABASE sae41 ;
+
+USE sae41 ;
+
+CREATE TABLE users (
+  id INT PRIMARY KEY,
+  login VARCHAR(52),
+  password VARCHAR(52)
+);
+
+CREATE TABLE meetings (
+  id INT PRIMARY KEY,
+  user_id INT,
+  creation_date DATETIME,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE dates (
+  id INT PRIMARY KEY,
+  user_id INT,
+  meeting_id INT,
+  date DATETIME,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (meeting_id) REFERENCES meetings(id)
+);
+
+CREATE TABLE answers (
+  id INT PRIMARY KEY,
+  user_name VARCHAR(52),
+  date_id INT,
+  meeting_id INT,
+  response TINYINT,
+  FOREIGN KEY (date_id) REFERENCES dates(id),
+  FOREIGN KEY (meeting_id) REFERENCES meetings(id)
+);

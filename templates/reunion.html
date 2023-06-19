@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Système de Réunion</title>
+  <style>
+    #calendar {
+      font-family: Arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #calendar td, #calendar th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #calendar th {
+      text-align: left;
+      background-color: #f2f2f2;
+    }
+
+    #calendar td {
+      text-align: left;
+    }
+
+    #create-form {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Système de Réunion</h1>
+
+  <h2>Calendrier des Réunions</h2>
+  <table id="calendar">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Heure</th>
+        <th>Titre</th>
+        <th>Participants</th>
+      </tr>
+    </thead>
+    <tbody id="meeting-list">
+      <!-- Les réunions seront ajoutées dynamiquement ici -->
+    </tbody>
+  </table>
+
+  <h2>Créer une Nouvelle Réunion</h2>
+  <form id="create-form">
+    <label for="meeting-date">Date:</label>
+    <input type="date" id="meeting-date" required><br>
+
+    <label for="participants">Participants:</label>
+    <select id="participants" multiple required>
+      <!-- Les utilisateurs seront ajoutés dynamiquement ici -->
+    </select><br>
+
+    <button type="submit">Créer Réunion</button>
+  </form>
+
+  <script>
+    // Fonction pour créer une nouvelle réunion
+    function createMeeting(event) {
+      event.preventDefault();
+
+      const date = document.getElementById('meeting-date').value;
+      const participants = Array.from(document.getElementById('participants').selectedOptions, option => option.value);
+
+      // Ajoutez ici le code pour créer la réunion avec les données saisies
+
+      // Affichez la nouvelle réunion dans le calendrier
+      const meetingList = document.getElementById('meeting-list');
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `<td>${date}</td><td>${date}</td><td>Nouvelle Réunion</td><td>${participants.join(', ')}</td>`;
+      meetingList.appendChild(newRow);
+
+      // Réinitialisez le formulaire
+      document.getElementById('create-form').reset();
+    }
+
+    // Récupérez les utilisateurs depuis votre base de données à l'aide de Python
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('/get-users'); // Envoie une requête à votre serveur Python pour récupérer les utilisateurs
+        const users = await response.json();
+
+        // Remplissez la liste déroulante des participants avec les utilisateurs
+        const participantsSelect = document.getElementById('participants');
+        users.forEach(user => {
+          const option = document.createElement('option');
+          option.value = user;
+          option.text = user;
+          participantsSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Une erreur s\'est produite lors de la récupération des utilisateurs:', error);
+      }
+    };
+
+    // Ajoutez un écouteur d'événement pour le formulaire de création de réunion
+    document.getElementById('create-form').addEventListener('submit', createMeeting);
+
+    // Appelez la fonction pour récupérer les utilisateurs lors du chargement de la page
+    fetchUsers();
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+  <title>Inscription</title>
+</head>
+<body>
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+  <h2>Créer un compte</h2>
+  <form method='POST'>
+    <label for="username">Nom d'utilisateur :</label>
+    <input type="text" id="username" name="username" required><br>
+
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <input type="submit" value="Créer un compte">
+  </form>
+<p>Vous avez un compte ? <a href="index.html">Se connecter</a></p
+</body>
+</html>
