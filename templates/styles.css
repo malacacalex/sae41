@@ -1,0 +1,61 @@
+body {
+  background-color: #212121;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+  color: #fff;
+}
+
+#calendar {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#calendar td, #calendar th {
+  border: 1px solid #444;
+  padding: 8px;
+}
+
+#calendar th {
+  text-align: left;
+  background-color: #333;
+  color: #fff;
+}
+
+#calendar td {
+  text-align: left;
+}
+
+#create-form {
+  margin-top: 20px;
+}
+
+label {
+  color: #fff;
+}
+
+input[type="date"],
+input[type="time"],
+select {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #555;
+}

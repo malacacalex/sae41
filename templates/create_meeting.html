@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Créer une Réunion</title>
+</head>
+<body>
+    <h1>Créer une Réunion</h1>
+    <form method="post" action="/create_meeting">
+        <input type="hidden" name="user_id" value="1" />
+        <label for="date">Date :</label>
+        <input type="date" name="date" required /><br />
+        <label for="time">Heure :</label>
+        <input type="time" name="time" required /><br />
+        <label for="participants">Participants (séparés par des virgules) :</label>
+        <input type="text" name="participants" required /><br />
+        <input type="submit" value="Envoyer" />
+    </form>
+</body>
+</html>
+
