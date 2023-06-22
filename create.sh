@@ -1,1 +1,1 @@
-docker build -t web_reunion -f /home/bob/sae41/Dockerfile /home/bob/sae41/
+docker build -t web_reunion -f Dockerfile .
